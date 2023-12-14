@@ -1,0 +1,17 @@
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Circle?>
+<VBox xmlns:fx="http://javafx.com/fxml">
+    <fx:define>
+        <Color fx:id="myColor">
+            <red>0.3</red>
+            <green>0.3</green>
+            <blue>1.0</blue>
+        </Color>
+    </fx:define>
+    <children>
+        <Circle fill="RED" radius="61.0" stroke="black"></Circle>
+        <Circle fill="$myColor" radius="61.0" stroke="black"></Circle>
+        <Circle fill="GREEN" radius="61.0" stroke="black"></Circle>
+    </children>
+</VBox>
