@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.kpfu.itis.itisorissemesterwork2nikolaev.ProfileController">
+    <children>
+        <Text fx:id="greetingsText" layoutX="14.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Добро пожаловать на биржу" />
+        <Label fx:id="choosePaper" layoutX="106.0" layoutY="213.0" text="Выбери акцию" />
+        <HBox layoutX="15.0" layoutY="246.0" prefHeight="138.0" prefWidth="579.0">
+            <children>
+                <AnchorPane onMouseClicked="#onClickSber" prefHeight="144.0" prefWidth="146.0">
+                    <children>
+                        <Text fx:id="textSber" layoutX="57.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Сбер" />
+                        <Text layoutX="57.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="255" />
+                        <ImageView fitHeight="96.0" fitWidth="157.0" layoutX="26.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../drawings/sber.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </AnchorPane>
+                <AnchorPane onMouseClicked="#onClickRosneft" prefHeight="138.0" prefWidth="136.0">
+                    <children>
+                        <Text layoutX="57.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Роснефть" />
+                        <Text layoutX="57.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                        <ImageView fitHeight="96.0" fitWidth="157.0" layoutX="36.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../drawings/rosneft.png" />
+                            </image></ImageView>
+                    </children>
+                </AnchorPane>
+                <AnchorPane onMouseClicked="#onClickAeroflot" prefHeight="138.0" prefWidth="136.0">
+                    <children>
+                        <Text layoutX="57.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Аэрофлот" />
+                        <Text layoutX="57.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                        <ImageView fitHeight="37.0" fitWidth="157.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../drawings/aeroflot-russian-airlines-logo-e1504171933945.png" />
+                     </image></ImageView>
+                    </children>
+                </AnchorPane>
+            </children>
+        </HBox>
+        <AnchorPane layoutX="488.0" layoutY="246.0" onMouseClicked="#onClickGold" prefHeight="138.0" prefWidth="136.0">
+            <children>
+                <Text layoutX="57.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Золото" />
+                <Text layoutX="57.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                <ImageView fitHeight="96.0" fitWidth="157.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../drawings/gold-transformed.png" />
+               </image></ImageView>
+            </children>
+        </AnchorPane>
+      <Text layoutX="375.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Мой портфель" />
+      
+    </children>
+</AnchorPane>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="438.0" prefWidth="615.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.kpfu.itis.itisorissemesterwork2nikolaev.InvestmentsController">
+   <children>
+      <ImageView fitHeight="411.0" fitWidth="404.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="84.32421875" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="85.0">
+         <image>
+            <Image url="@../drawings/dollars.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="404.0" layoutY="119.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="119.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="119.0">
+         <children>
+            <TextField fx:id="textFieldForName" layoutX="26.0" layoutY="41.0" prefHeight="32.0" prefWidth="149.0" promptText="введи свой ник" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="41.0" />
+            <Button fx:id="button" layoutX="76.0" layoutY="136.0" mnemonicParsing="false" onAction="#onClickEnter" text="Войти" AnchorPane.bottomAnchor="39.0" AnchorPane.leftAnchor="76.0" AnchorPane.rightAnchor="75.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

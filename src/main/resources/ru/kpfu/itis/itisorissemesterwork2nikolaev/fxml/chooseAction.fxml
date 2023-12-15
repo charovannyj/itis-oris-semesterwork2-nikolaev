@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.kpfu.itis.itisorissemesterwork2nikolaev.ChooseActionController">
+   <children>
+      <Text layoutX="73.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*name company* взять из ласт сцены" />
+      <Label layoutX="300.0" layoutY="28.0" text="Мой баланс составляет X рублей" />
+      <RadioButton layoutX="50.0" layoutY="242.0" mnemonicParsing="false" text="Купить">
+         <toggleGroup>
+            <ToggleGroup fx:id="action" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton layoutX="237.0" layoutY="242.0" mnemonicParsing="false" text="Продать" toggleGroup="$action" />
+      <RadioButton layoutX="237.0" layoutY="270.0" mnemonicParsing="false" text="Заявка на продажу" toggleGroup="$action" />
+      <RadioButton layoutX="50.0" layoutY="270.0" mnemonicParsing="false" text="Заявка на покупку" toggleGroup="$action" />
+      <TextField layoutX="203.0" layoutY="299.0" />
+      <Label layoutX="50.0" layoutY="303.0" text="Введите количество акций" />
+      <Button fx:id="executeButton" layoutX="94.0" layoutY="355.0" mnemonicParsing="false" onAction="#onClickExecute" text="Исполнить" />
+      <Label fx:id="errorLabel" layoutX="227.0" layoutY="359.0" text="Label" />
+   </children>
+</AnchorPane>
