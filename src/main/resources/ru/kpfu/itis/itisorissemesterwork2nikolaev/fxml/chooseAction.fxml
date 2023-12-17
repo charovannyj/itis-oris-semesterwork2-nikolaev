@@ -6,23 +6,80 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.kpfu.itis.itisorissemesterwork2nikolaev.ChooseActionController">
    <children>
-      <Text layoutX="73.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*name company* взять из ласт сцены" />
-      <Label layoutX="300.0" layoutY="28.0" text="Мой баланс составляет X рублей" />
-      <RadioButton layoutX="50.0" layoutY="242.0" mnemonicParsing="false" text="Купить">
+      <Label layoutX="41.0" layoutY="139.0" text="Мой баланс составляет X рублей" />
+      <RadioButton fx:id="rb_buy" layoutX="50.0" layoutY="242.0" mnemonicParsing="false" onAction="#onClickRbBuy" text="Купить">
          <toggleGroup>
             <ToggleGroup fx:id="action" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton layoutX="237.0" layoutY="242.0" mnemonicParsing="false" text="Продать" toggleGroup="$action" />
-      <RadioButton layoutX="237.0" layoutY="270.0" mnemonicParsing="false" text="Заявка на продажу" toggleGroup="$action" />
-      <RadioButton layoutX="50.0" layoutY="270.0" mnemonicParsing="false" text="Заявка на покупку" toggleGroup="$action" />
-      <TextField layoutX="203.0" layoutY="299.0" />
+      <RadioButton fx:id="rb_sell" layoutX="237.0" layoutY="242.0" mnemonicParsing="false" onAction="#onClickRbSell" text="Продать" toggleGroup="$action" />
+      <RadioButton fx:id="rb_bid_sell" layoutX="237.0" layoutY="270.0" mnemonicParsing="false" onAction="#onClickRbBidSell" text="Заявка на продажу" toggleGroup="$action" />
+      <RadioButton fx:id="rb_bid_buy" layoutX="50.0" layoutY="270.0" mnemonicParsing="false" onAction="#onClickRbBidBuy" text="Заявка на покупку" toggleGroup="$action" />
+      <TextField fx:id="textFieldForQuantity" layoutX="203.0" layoutY="299.0" onKeyPressed="#onKeyPressedTextFieldForQuantity" />
       <Label layoutX="50.0" layoutY="303.0" text="Введите количество акций" />
       <Button fx:id="executeButton" layoutX="94.0" layoutY="355.0" mnemonicParsing="false" onAction="#onClickExecute" text="Исполнить" />
-      <Label fx:id="errorLabel" layoutX="227.0" layoutY="359.0" text="Label" />
+      <Label fx:id="errorLabel" layoutX="227.0" layoutY="359.0" text="Недостаточно денег для совершения данной операции" textFill="#f50606" visible="false" />
+      <Button fx:id="buttonExit" layoutX="26.0" layoutY="24.0" mnemonicParsing="false" onAction="#onClickBack" text="Назад" />
+      <HBox layoutX="343.0" layoutY="14.0" prefHeight="227.0" prefWidth="200.0">
+         <children>
+            <VBox prefHeight="210.0" prefWidth="67.0">
+               <children>
+                  <Text fx:id="text_1_1" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="59.13671875" />
+                  <Text fx:id="text_1_2" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="59.13671875" />
+                  <Text fx:id="text_1_3" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="59.13671875" />
+                  <Text fx:id="text_1_4" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="59.13671875" />
+                  <Text fx:id="text_1_5" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="59.13671875" />
+                  <Text fx:id="text_1_6" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="59.13671875" />
+                  <Text fx:id="text_1_7" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="59.13671875" />
+                  <Text fx:id="text_1_8" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="59.13671875" />
+                  <Text fx:id="text_1_9" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="59.13671875" />
+                  <Text fx:id="text_1_10" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="59.13671875" />
+                  <Text fx:id="text_1_11" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="59.13671875" />
+                  <Text fx:id="text_1_12" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="59.13671875" />
+               </children>
+            </VBox>
+            <VBox prefHeight="227.0" prefWidth="61.0">
+               <children>
+                  <Text fx:id="text_2_1" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="59.13671875" />
+                  <Text fx:id="text_2_2" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="59.13671875" />
+                  <Text fx:id="text_2_3" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="59.13671875" />
+                  <Text fx:id="text_2_4" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="59.13671875" />
+                  <Text fx:id="text_2_5" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="59.13671875" />
+                  <Text fx:id="text_2_6" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="59.13671875" />
+                  <Text fx:id="text_2_7" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="59.13671875" />
+                  <Text fx:id="text_2_8" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="59.13671875" />
+                  <Text fx:id="text_2_9" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="59.13671875" />
+                  <Text fx:id="text_2_10" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="59.13671875" />
+                  <Text fx:id="text_2_11" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="59.13671875" />
+                  <Text fx:id="text_2_12" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="59.13671875" />
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Text fx:id="text_3_1" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="59.13671875" />
+                  <Text fx:id="text_3_2" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="59.13671875" />
+                  <Text fx:id="text_3_3" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="59.13671875" />
+                  <Text fx:id="text_3_4" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="59.13671875" />
+                  <Text fx:id="text_3_5" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="59.13671875" />
+                  <Text fx:id="text_3_6" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="59.13671875" />
+                  <Text fx:id="text_3_7" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="59.13671875" />
+                  <Text fx:id="text_3_8" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="59.13671875" />
+                  <Text fx:id="text_3_9" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="59.13671875" />
+                  <Text fx:id="text_3_10" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="59.13671875" />
+                  <Text fx:id="text_3_11" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="59.13671875" />
+                  <Text fx:id="text_3_12" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="59.13671875" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <Label fx:id="textForBid" layoutX="50.0" layoutY="332.0" prefHeight="17.0" prefWidth="148.0" text="Введите цену заявки" visible="false" />
+      <TextField fx:id="textFieldForPrice" layoutX="203.0" layoutY="328.0" visible="false" />
+      <Label layoutX="237.0" layoutY="332.0" text="Label" />
    </children>
 </AnchorPane>

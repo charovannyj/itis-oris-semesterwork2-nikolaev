@@ -10,9 +10,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class InvestmentsApplication extends Application {
+    public static Database database;
 
     @Override
     public void start(Stage stage) throws IOException {
+        database = new Database();
         AnchorPane anchorPane = new AnchorPane();
 
         FXMLLoader loader = new FXMLLoader(InvestmentsApplication.class.getResource("fxml/main.fxml"));
@@ -23,7 +25,7 @@ public class InvestmentsApplication extends Application {
         anchorPane.getChildren().add(btn);
 
         Scene k = new Scene(anchorPane);
-        stage.setTitle("Hello!");
+        stage.setTitle("INVESTMENTS");
         stage.setScene(k);
         stage.show();
     }

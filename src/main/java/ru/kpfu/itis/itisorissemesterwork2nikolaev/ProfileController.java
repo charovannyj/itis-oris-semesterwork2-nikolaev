@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
@@ -25,7 +26,19 @@ public class ProfileController {
     @FXML
     private Text textSber;
     @FXML
+    private Button buttonExit;
+
+    @FXML
+    void onClickBack(ActionEvent event) throws IOException {
+        Parent wow = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/main.fxml")));
+        Scene scene = new Scene(wow);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+    @FXML
     void onClickSber(MouseEvent event) throws IOException {
+        InvestmentsApplication.database.currentCompany = Company.SBER.value;
         Parent wow = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/chooseAction.fxml")));
         Scene scene = new Scene(wow);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -34,6 +47,7 @@ public class ProfileController {
     }
     @FXML
     void onClickRosneft(MouseEvent event) throws IOException {
+        InvestmentsApplication.database.currentCompany = Company.ROSNEFT.value;
         Parent wow = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/chooseAction.fxml")));
         Scene scene = new Scene(wow);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -42,6 +56,7 @@ public class ProfileController {
     }
     @FXML
     void onClickAeroflot(MouseEvent event) throws IOException {
+        InvestmentsApplication.database.currentCompany = Company.AEROFLOT.value;
         Parent wow = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/chooseAction.fxml")));
         Scene scene = new Scene(wow);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -50,6 +65,7 @@ public class ProfileController {
     }
     @FXML
     void onClickGold(MouseEvent event) throws IOException {
+        InvestmentsApplication.database.currentCompany = Company.GOLD.value;
         Parent wow = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/chooseAction.fxml")));
         Scene scene = new Scene(wow);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
