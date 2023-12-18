@@ -24,7 +24,7 @@
       <TextField fx:id="textFieldForQuantity" layoutX="203.0" layoutY="299.0" onKeyPressed="#onKeyPressedTextFieldForQuantity" />
       <Label layoutX="50.0" layoutY="303.0" text="Введите количество акций" />
       <Button fx:id="executeButton" layoutX="94.0" layoutY="355.0" mnemonicParsing="false" onAction="#onClickExecute" text="Исполнить" />
-      <Label fx:id="errorLabel" layoutX="227.0" layoutY="359.0" text="Недостаточно денег для совершения данной операции" textFill="#f50606" visible="false" />
+      <Label fx:id="errorLabel" layoutX="227.0" layoutY="359.0" textFill="#f50606" />
       <Button fx:id="buttonExit" layoutX="26.0" layoutY="24.0" mnemonicParsing="false" onAction="#onClickBack" text="Назад" />
       <HBox layoutX="343.0" layoutY="14.0" prefHeight="227.0" prefWidth="200.0">
          <children>

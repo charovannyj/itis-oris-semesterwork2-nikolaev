@@ -1,5 +1,6 @@
 package ru.kpfu.itis.itisorissemesterwork2nikolaev;
 
+import javafx.scene.control.Alert;
 import ru.kpfu.itis.itisorissemesterwork2nikolaev.model.Offer;
 import ru.kpfu.itis.itisorissemesterwork2nikolaev.model.User;
 
@@ -72,13 +73,19 @@ public class Database {
                 }
             } else if (InvestmentsApplication.database.currentUser.getSumRubles()>=sum && InvestmentsApplication.database.currentQuantity>size){
                 // покупаем все возможные заявки и говорим пользователю что купили все возможные и часть денег обратно и оповещаем
-                for (int k = 0; k < count; k++){
+                for (int k = 0; k < size; k++){
                     changeMoneyOnPaper(prices.get(k)[0], prices.get(k)[1], "SELL_BID");
                 }
-                //накинуть оповещение
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("ПРЕДУПРЕЖДЕНИЕ :|");
+                alert.setHeaderText("куплены не все акции, но часть куплена");
+                alert.showAndWait();
             } else if(InvestmentsApplication.database.currentUser.getSumRubles()<sum){
-                //тут npe вылезает...............................
-                //ChooseActionController.setErrorLabelVisible(true);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("ОШИБКА :(");
+                alert.setHeaderText("не хватает денег для совершения данной операции");
+                alert.showAndWait();
+
             }
 
         } catch (SQLException e) {
@@ -205,13 +212,18 @@ public class Database {
             } else if (InvestmentsApplication.database.currentUser.getNumberCurrentCompany(InvestmentsApplication.database.currentCompany)>=InvestmentsApplication.database.currentQuantity &&
                     InvestmentsApplication.database.currentQuantity>size){
                 // продаем все возможные заявки и говорим пользователю что продали все возможные и часть денег обратно и оповещаем
-                for (int k = 0; k < count; k++){
+                for (int k = 0; k < size; k++){
                     changePaperOnMoney(prices.get(k)[0], prices.get(k)[1], "BUY_BID");
                 }
-                //накинуть оповещение
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("ПРЕДУПРЕЖДЕНИЕ :|");
+                alert.setHeaderText("проданы не все акции, но часть продана");
+                alert.showAndWait();
             } else {
-                //недостаточно акций для выставления такой заявки
-                //ChooseActionController.setErrorLabelVisible(true);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("ОШИБКА :(");
+                alert.setHeaderText("не хватает денег/акций для совершения данной операции");
+                alert.showAndWait();
             }
 
         } catch (SQLException e) {

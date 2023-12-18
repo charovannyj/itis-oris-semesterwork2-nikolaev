@@ -8,11 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -37,7 +33,7 @@ public class ChooseActionController implements Initializable {
     private Button buttonExit;
 
     @FXML
-    public static Label errorLabel = null;
+    public static Label errorLabel = new Label();
 
     @FXML
     private Button executeButton;
@@ -115,11 +111,23 @@ public class ChooseActionController implements Initializable {
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
+                //нужно списывать деньги со счета при подаче заявки на покупку
             }
-        } else {
-            setErrorLabelVisible(true);
+        } else if (InvestmentsApplication.database.currentAction.equals("BUY_BID") &&
+                InvestmentsApplication.database.currentQuantity * InvestmentsApplication.database.currentPrice > InvestmentsApplication.database.currentUser.getSumRubles() ||
+                InvestmentsApplication.database.currentAction.equals("SELL_BID") && InvestmentsApplication.database.currentQuantity<InvestmentsApplication.database.currentUser.getNumberCurrentCompany(InvestmentsApplication.database.currentCompany)) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("ОШИБКА :(");
+            alert.setHeaderText("не хватает денег/акций для совершения данной операции");
+            alert.showAndWait();
+        } else if(InvestmentsApplication.database.currentAction.equals("SELL_BID") &&
+                InvestmentsApplication.database.currentQuantity>InvestmentsApplication.database.currentUser.getNumberCurrentCompany(InvestmentsApplication.database.currentCompany)){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("ОШИБКА :(");
+            alert.setHeaderText("не хватает денег/акций для совершения данной операции");
+            alert.showAndWait();
         }
-        if (InvestmentsApplication.database.currentAction.equals("BUY")) {
+        else if (InvestmentsApplication.database.currentAction.equals("BUY")) {
             InvestmentsApplication.database.buyPaper();
         } else if (InvestmentsApplication.database.currentAction.equals("SELL")) {
             InvestmentsApplication.database.sellPaper();
@@ -179,14 +187,14 @@ public class ChooseActionController implements Initializable {
         }*/
     }
 
-    @Override
+    @FXML
     public void initialize(URL location, ResourceBundle resources) {
         text_1_1.setText(String.valueOf(Math.random()));
         //onKeyPressedTextFieldForQuantity(new KeyEvent(new Object()));
     }
 
-    public static void setErrorLabelVisible(boolean visible) {
-        errorLabel.setVisible(visible);
+    public static void setErrorLabelVisible(String text) {
+        errorLabel.setText(text);
     }
 }
 
