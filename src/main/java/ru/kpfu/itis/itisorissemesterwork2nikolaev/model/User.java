@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class User {
+    int numberCurrentCompany;
     String name;
     int sumRubles;
     int sumSber;
@@ -29,6 +30,53 @@ public class User {
             }
         }
         return id;
+    }
+
+    public int getNumberCurrentCompany(String company) throws SQLException {
+        Statement statement = DatabaseConnectionUtil.getConnection().createStatement();
+        switch (company){
+            case("SBER"):
+                String sql1 = "SELECT sumsber FROM public.users WHERE users.name='" + InvestmentsApplication.database.currentUser.getName() + "';";
+                ResultSet resultSet1 = statement.executeQuery(sql1);
+                if (resultSet1 != null) {
+                    while (resultSet1.next()) {
+                        sumRubles = resultSet1.getInt("sumsber");
+                    }
+                }
+                return sumRubles;
+            case("ROSNEFT"):
+                String sql2 = "SELECT sumrosneft FROM public.users WHERE users.name='" + InvestmentsApplication.database.currentUser.getName() + "';";
+                ResultSet resultSet2 = statement.executeQuery(sql2);
+                if (resultSet2 != null) {
+                    while (resultSet2.next()) {
+                        sumRosneft = resultSet2.getInt("sumrosneft");
+                    }
+                }
+                return sumRosneft;
+            case("AEROFLOT"):
+                String sql3 = "SELECT sumaeroflot FROM public.users WHERE users.name='" + InvestmentsApplication.database.currentUser.getName() + "';";
+                ResultSet resultSet3 = statement.executeQuery(sql3);
+                if (resultSet3 != null) {
+                    while (resultSet3.next()) {
+                        sumAeroflot = resultSet3.getInt("sumaeroflot");
+                    }
+                }
+                return sumAeroflot;
+            case("GOLD"):
+                String sql4 = "SELECT sumgold FROM public.users WHERE users.name='" + InvestmentsApplication.database.currentUser.getName() + "';";
+                ResultSet resultSet4 = statement.executeQuery(sql4);
+                if (resultSet4 != null) {
+                    while (resultSet4.next()) {
+                        sumGold = resultSet4.getInt("sumgold");
+                    }
+                }
+                return sumGold;
+        }
+        return 0;
+    }
+
+    public void setNumberCurrentCompany(int numberCurrentCompany) {
+        this.numberCurrentCompany = numberCurrentCompany;
     }
 
     public void setId(int id) {
@@ -52,7 +100,16 @@ public class User {
         this.name = name;
     }
 
-    public int getSumRubles() {
+    public int getSumRubles() throws SQLException {
+        int sumRubles = 0;
+        Statement statement = DatabaseConnectionUtil.getConnection().createStatement();
+        String sql = "SELECT * FROM public.users WHERE users.name='" + InvestmentsApplication.database.currentName + "';";
+        ResultSet resultSet = statement.executeQuery(sql);
+        if (resultSet != null) {
+            while (resultSet.next()) {
+                sumRubles = resultSet.getInt("sumrubles");
+            }
+        }
         return sumRubles;
     }
 
@@ -60,7 +117,16 @@ public class User {
         this.sumRubles = sumRubles;
     }
 
-    public int getSumSber() {
+    public int getSumSber() throws SQLException {
+        int sumSber = 0;
+        Statement statement = DatabaseConnectionUtil.getConnection().createStatement();
+        String sql = "SELECT * FROM public.users WHERE users.name='" + InvestmentsApplication.database.currentName + "';";
+        ResultSet resultSet = statement.executeQuery(sql);
+        if (resultSet != null) {
+            while (resultSet.next()) {
+                sumSber = resultSet.getInt("sumsber");
+            }
+        }
         return sumSber;
     }
 
@@ -68,7 +134,16 @@ public class User {
         this.sumSber = sumSber;
     }
 
-    public int getSumRosneft() {
+    public int getSumRosneft() throws SQLException {
+        int sumRosneft = 0;
+        Statement statement = DatabaseConnectionUtil.getConnection().createStatement();
+        String sql = "SELECT * FROM public.users WHERE users.name='" + InvestmentsApplication.database.currentName + "';";
+        ResultSet resultSet = statement.executeQuery(sql);
+        if (resultSet != null) {
+            while (resultSet.next()) {
+                sumRosneft = resultSet.getInt("sumrosneft");
+            }
+        }
         return sumRosneft;
     }
 
@@ -76,7 +151,16 @@ public class User {
         this.sumRosneft = sumRosneft;
     }
 
-    public int getSumAeroflot() {
+    public int getSumAeroflot() throws SQLException {
+        int sumAeroflot = 0;
+        Statement statement = DatabaseConnectionUtil.getConnection().createStatement();
+        String sql = "SELECT * FROM public.users WHERE users.name='" + InvestmentsApplication.database.currentName + "';";
+        ResultSet resultSet = statement.executeQuery(sql);
+        if (resultSet != null) {
+            while (resultSet.next()) {
+                sumAeroflot = resultSet.getInt("sumaeroflot");
+            }
+        }
         return sumAeroflot;
     }
 
@@ -84,7 +168,16 @@ public class User {
         this.sumAeroflot = sumAeroflot;
     }
 
-    public int getSumGold() {
+    public int getSumGold() throws SQLException {
+        int sumGold = 0;
+        Statement statement = DatabaseConnectionUtil.getConnection().createStatement();
+        String sql = "SELECT * FROM public.users WHERE users.name='" + InvestmentsApplication.database.currentName + "';";
+        ResultSet resultSet = statement.executeQuery(sql);
+        if (resultSet != null) {
+            while (resultSet.next()) {
+                sumGold = resultSet.getInt("sumgold");
+            }
+        }
         return sumGold;
     }
 

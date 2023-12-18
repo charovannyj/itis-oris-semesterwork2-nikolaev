@@ -37,7 +37,7 @@ public class ChooseActionController implements Initializable {
     private Button buttonExit;
 
     @FXML
-    public static Label errorLabel;
+    public static Label errorLabel = null;
 
     @FXML
     private Button executeButton;
@@ -66,7 +66,6 @@ public class ChooseActionController implements Initializable {
     private Text text_1_1;
 
 
-
     @FXML
     void onClickBack(ActionEvent event) throws IOException {
         Parent wow = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/profile.fxml")));
@@ -83,8 +82,11 @@ public class ChooseActionController implements Initializable {
         InvestmentsApplication.database.currentIdUser = InvestmentsApplication.database.currentUser.getId();
 
 
+        if (InvestmentsApplication.database.currentAction.equals("BUY_BID") &&
+                InvestmentsApplication.database.currentQuantity * InvestmentsApplication.database.currentPrice <= InvestmentsApplication.database.currentUser.getSumRubles() ||
+                InvestmentsApplication.database.currentAction.equals("SELL_BID") &&
+                InvestmentsApplication.database.currentQuantity<=InvestmentsApplication.database.currentUser.getNumberCurrentCompany(InvestmentsApplication.database.currentCompany)) {
 
-        if (InvestmentsApplication.database.currentAction.equals("BUY_BID") || InvestmentsApplication.database.currentAction.equals("SELL_BID")) {
             InvestmentsApplication.database.currentPrice = Float.parseFloat(textFieldForPrice.getText());
             if (!new OfferDaoImpl().isExistPrice(InvestmentsApplication.database.currentPrice, InvestmentsApplication.database.currentIdUser)) {
                 String query = "INSERT INTO public.offers (id_user, company, action, price, quantity) VALUES (?, ?, ?, ?, ?);";
@@ -115,10 +117,14 @@ public class ChooseActionController implements Initializable {
                 }
             }
         } else {
-            if (InvestmentsApplication.database.currentAction.equals("BUY")){
-                InvestmentsApplication.database.buyPaper();
-            }
+            setErrorLabelVisible(true);
         }
+        if (InvestmentsApplication.database.currentAction.equals("BUY")) {
+            InvestmentsApplication.database.buyPaper();
+        } else if (InvestmentsApplication.database.currentAction.equals("SELL")) {
+            InvestmentsApplication.database.sellPaper();
+        }
+
 
         //после execute переходим на нашу страницу
         Parent wow = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/congratulations.fxml")));
@@ -155,6 +161,7 @@ public class ChooseActionController implements Initializable {
         textForBid.setVisible(false);
         textFieldForPrice.setVisible(false);
     }
+
     @FXML
     void onKeyPressedTextFieldForQuantity(KeyEvent event) {
         textFieldForPrice.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -171,10 +178,15 @@ public class ChooseActionController implements Initializable {
             executeButton.setDisable(false);
         }*/
     }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         text_1_1.setText(String.valueOf(Math.random()));
         //onKeyPressedTextFieldForQuantity(new KeyEvent(new Object()));
+    }
+
+    public static void setErrorLabelVisible(boolean visible) {
+        errorLabel.setVisible(visible);
     }
 }
 
