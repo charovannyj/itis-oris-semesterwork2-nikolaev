@@ -21,10 +21,9 @@
       <RadioButton fx:id="rb_sell" layoutX="237.0" layoutY="242.0" mnemonicParsing="false" onAction="#onClickRbSell" text="Продать" toggleGroup="$action" />
       <RadioButton fx:id="rb_bid_sell" layoutX="237.0" layoutY="270.0" mnemonicParsing="false" onAction="#onClickRbBidSell" text="Заявка на продажу" toggleGroup="$action" />
       <RadioButton fx:id="rb_bid_buy" layoutX="50.0" layoutY="270.0" mnemonicParsing="false" onAction="#onClickRbBidBuy" text="Заявка на покупку" toggleGroup="$action" />
-      <TextField fx:id="textFieldForQuantity" layoutX="203.0" layoutY="299.0" onKeyPressed="#onKeyPressedTextFieldForQuantity" />
+      <TextField fx:id="textFieldForQuantity" layoutX="203.0" layoutY="299.0" />
       <Label layoutX="50.0" layoutY="303.0" text="Введите количество акций" />
       <Button fx:id="executeButton" layoutX="94.0" layoutY="355.0" mnemonicParsing="false" onAction="#onClickExecute" text="Исполнить" />
-      <Label fx:id="errorLabel" layoutX="227.0" layoutY="359.0" textFill="#f50606" />
       <Button fx:id="buttonExit" layoutX="26.0" layoutY="24.0" mnemonicParsing="false" onAction="#onClickBack" text="Назад" />
       <HBox layoutX="343.0" layoutY="43.0" prefHeight="227.0" prefWidth="200.0">
          <children>

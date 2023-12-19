@@ -3,15 +3,16 @@ package ru.kpfu.itis.itisorissemesterwork2nikolaev.model;
 import ru.kpfu.itis.itisorissemesterwork2nikolaev.DatabaseConnectionUtil;
 import ru.kpfu.itis.itisorissemesterwork2nikolaev.InvestmentsApplication;
 
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class User {
+public class User implements Serializable {
     int numberCurrentCompany;
-    String name;
+    public String name;
     int sumRubles;
     int sumSber;
     int sumRosneft;
@@ -19,10 +20,31 @@ public class User {
     int sumGold;
     int id;
 
+    public User(String name) throws SQLException {
+        this.name = name;
+        this.sumRubles = getSumRubles();
+        this.sumSber = getSumSber();
+        this.sumRosneft = getSumRosneft();
+        this.sumAeroflot = getSumAeroflot();
+        this.sumGold = getSumGold();
+    }
+
+    public User(int id, String name, int sumRubles, int sumSber, int sumRosneft, int sumAeroflot, int sumGold) {
+        this.id = id;
+        this.name = name;
+        this.sumRubles = sumRubles;
+        this.sumSber = sumSber;
+        this.sumRosneft = sumRosneft;
+        this.sumAeroflot = sumAeroflot;
+        this.sumGold = sumGold;
+    }
     public int getId() throws SQLException {
+        return getId(name);
+    }
+    public int getId(String name) throws SQLException {
         int id = 0;
         Statement statement = DatabaseConnectionUtil.getConnection().createStatement();
-        String sql = "SELECT * FROM public.users WHERE users.name='" + InvestmentsApplication.database.currentName + "';";
+        String sql = "SELECT * FROM public.users WHERE users.name='" + name + "';";
         ResultSet resultSet = statement.executeQuery(sql);
         if (resultSet != null) {
             while (resultSet.next()) {
@@ -34,8 +56,8 @@ public class User {
 
     public int getNumberCurrentCompany(String company) throws SQLException {
         Statement statement = DatabaseConnectionUtil.getConnection().createStatement();
-        switch (company){
-            case("SBER"):
+        switch (company) {
+            case ("SBER"):
                 String sql1 = "SELECT sumsber FROM public.users WHERE users.name='" + InvestmentsApplication.database.currentUser.getName() + "';";
                 ResultSet resultSet1 = statement.executeQuery(sql1);
                 if (resultSet1 != null) {
@@ -44,7 +66,7 @@ public class User {
                     }
                 }
                 return sumRubles;
-            case("ROSNEFT"):
+            case ("ROSNEFT"):
                 String sql2 = "SELECT sumrosneft FROM public.users WHERE users.name='" + InvestmentsApplication.database.currentUser.getName() + "';";
                 ResultSet resultSet2 = statement.executeQuery(sql2);
                 if (resultSet2 != null) {
@@ -53,7 +75,7 @@ public class User {
                     }
                 }
                 return sumRosneft;
-            case("AEROFLOT"):
+            case ("AEROFLOT"):
                 String sql3 = "SELECT sumaeroflot FROM public.users WHERE users.name='" + InvestmentsApplication.database.currentUser.getName() + "';";
                 ResultSet resultSet3 = statement.executeQuery(sql3);
                 if (resultSet3 != null) {
@@ -62,7 +84,7 @@ public class User {
                     }
                 }
                 return sumAeroflot;
-            case("GOLD"):
+            case ("GOLD"):
                 String sql4 = "SELECT sumgold FROM public.users WHERE users.name='" + InvestmentsApplication.database.currentUser.getName() + "';";
                 ResultSet resultSet4 = statement.executeQuery(sql4);
                 if (resultSet4 != null) {
@@ -103,7 +125,7 @@ public class User {
     public int getSumRubles() throws SQLException {
         int sumRubles = 0;
         Statement statement = DatabaseConnectionUtil.getConnection().createStatement();
-        String sql = "SELECT * FROM public.users WHERE users.name='" + InvestmentsApplication.database.currentName + "';";
+        String sql = "SELECT * FROM public.users WHERE users.name='" + name + "';";
         ResultSet resultSet = statement.executeQuery(sql);
         if (resultSet != null) {
             while (resultSet.next()) {
@@ -120,7 +142,7 @@ public class User {
     public int getSumSber() throws SQLException {
         int sumSber = 0;
         Statement statement = DatabaseConnectionUtil.getConnection().createStatement();
-        String sql = "SELECT * FROM public.users WHERE users.name='" + InvestmentsApplication.database.currentName + "';";
+        String sql = "SELECT * FROM public.users WHERE users.name='" + name + "';";
         ResultSet resultSet = statement.executeQuery(sql);
         if (resultSet != null) {
             while (resultSet.next()) {
@@ -137,7 +159,7 @@ public class User {
     public int getSumRosneft() throws SQLException {
         int sumRosneft = 0;
         Statement statement = DatabaseConnectionUtil.getConnection().createStatement();
-        String sql = "SELECT * FROM public.users WHERE users.name='" + InvestmentsApplication.database.currentName + "';";
+        String sql = "SELECT * FROM public.users WHERE users.name='" + name + "';";
         ResultSet resultSet = statement.executeQuery(sql);
         if (resultSet != null) {
             while (resultSet.next()) {
@@ -154,7 +176,7 @@ public class User {
     public int getSumAeroflot() throws SQLException {
         int sumAeroflot = 0;
         Statement statement = DatabaseConnectionUtil.getConnection().createStatement();
-        String sql = "SELECT * FROM public.users WHERE users.name='" + InvestmentsApplication.database.currentName + "';";
+        String sql = "SELECT * FROM public.users WHERE users.name='" + name + "';";
         ResultSet resultSet = statement.executeQuery(sql);
         if (resultSet != null) {
             while (resultSet.next()) {
@@ -171,7 +193,7 @@ public class User {
     public int getSumGold() throws SQLException {
         int sumGold = 0;
         Statement statement = DatabaseConnectionUtil.getConnection().createStatement();
-        String sql = "SELECT * FROM public.users WHERE users.name='" + InvestmentsApplication.database.currentName + "';";
+        String sql = "SELECT * FROM public.users WHERE users.name='" + name + "';";
         ResultSet resultSet = statement.executeQuery(sql);
         if (resultSet != null) {
             while (resultSet.next()) {

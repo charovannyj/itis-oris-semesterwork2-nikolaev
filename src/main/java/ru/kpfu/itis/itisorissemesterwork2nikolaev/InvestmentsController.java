@@ -39,13 +39,7 @@ public class InvestmentsController {
 
     @FXML
     void onClickEnter(ActionEvent event) throws IOException {
-        InvestmentsApplication.database.currentName=textFieldForName.getText();
-        signInOrUpUser();
-        Parent wow = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/profile.fxml")));
-        Scene scene = new Scene(wow);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+
     }
 
     private static final Connection connection = DatabaseConnectionUtil.getConnection();

@@ -11,14 +11,16 @@ import java.util.List;
 
 public class OfferDaoImpl implements Dao<Offer> {
     private final Connection connection = DatabaseConnectionUtil.getConnection();
+
     @Override
     public Offer get(int id) {
         return null;
     }
-    public boolean isExistPrice(double price, int id_user){
+
+    public boolean isExistPrice(double price, int id_user) {
         try {
             Statement statement = connection.createStatement();
-            String sql = "SELECT * from public.offers WHERE offers.company='"+InvestmentsApplication.database.currentCompany+"' AND offers.action='"+InvestmentsApplication.database.currentAction+"' AND offers.price=" + price +" AND offers.id_user='"+InvestmentsApplication.database.currentIdUser+"';";
+            String sql = "SELECT * from public.offers WHERE offers.company='" + InvestmentsApplication.database.currentCompany + "' AND offers.action='" + InvestmentsApplication.database.currentAction + "' AND offers.price=" + price + " AND offers.id_user='" + id_user + "';";
             ResultSet resultSet = statement.executeQuery(sql);
             List<Offer> offers = new ArrayList<>();
             if (resultSet != null) {
@@ -34,16 +36,17 @@ public class OfferDaoImpl implements Dao<Offer> {
                     );
                 }
             }
-            return offers.size()>0;
+            return offers.size() > 0;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
-    @Override
+
+
     public List<Offer> getAll(String name, String action) {
         try {
             Statement statement = connection.createStatement();
-            String sql = "SELECT * from public.offers WHERE offers.name="+name+" AND offers.action="+action+";";
+            String sql = "SELECT * from public.offers WHERE offers.name=" + name + " AND offers.action=" + action + ";";
             ResultSet resultSet = statement.executeQuery(sql);
             List<Offer> offers = new ArrayList<>();
             if (resultSet != null) {
@@ -65,6 +68,32 @@ public class OfferDaoImpl implements Dao<Offer> {
         }
     }
     @Override
+    public List<Offer> getAll() {
+        try {
+            Statement statement = connection.createStatement();
+            String sql = "SELECT * FROM public.offers;";
+            ResultSet resultSet = statement.executeQuery(sql);
+            List<Offer> offers = new ArrayList<>();
+            if (resultSet != null) {
+                while (resultSet.next()) {
+                    offers.add(
+                            new Offer(
+                                    resultSet.getInt("id"),
+                                    resultSet.getString("name"),
+                                    resultSet.getString("action"),
+                                    resultSet.getFloat("price"),
+                                    resultSet.getInt("quantity")
+                            )
+                    );
+                }
+            }
+            return offers;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public void save(Offer offer) {
         String query = "INSERT INTO public.offers (name, action, price, quantity) VALUES (?, ?, ?, ?);";
         try (PreparedStatement preparedStatement = DatabaseConnectionUtil.getConnection().prepareStatement(query)) {
@@ -77,6 +106,5 @@ public class OfferDaoImpl implements Dao<Offer> {
             throw new RuntimeException(exception);
         }
     }
-
 }
 
