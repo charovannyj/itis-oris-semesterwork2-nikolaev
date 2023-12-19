@@ -42,8 +42,6 @@ public class ChooseActionController implements Initializable {
     @FXML
     private Label textForBid;
     @FXML
-    private Label textSumRubles;
-    @FXML
     private Text text_1_10;
     @FXML
     private Text text_1_11;
@@ -334,11 +332,7 @@ public class ChooseActionController implements Initializable {
         list = InvestmentsApplication.getClient().sendCompany(InvestmentsApplication.database.currentCompany);
         List<Integer[]> listBuy = (List<Integer[]>) list.get(0);
         List<Integer[]> listSell = (List<Integer[]>) list.get(1);
-        try {
-            textSumRubles.setText("Баланс - " + client.getSumRubles(InvestmentsApplication.database.currentUser.getName()) + "₽");
-        } catch (IOException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+
         text_1_7.setText("-");
         text_2_7.setText("-");
         text_1_8.setText("-");

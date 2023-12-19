@@ -17,6 +17,20 @@ import java.sql.SQLException;
 
 public class ProfileController {
     @FXML
+    private Text textBalance;
+    @FXML
+    private Text numberAeroflot;
+
+    @FXML
+    private Text numberGold;
+
+    @FXML
+    private Text numberRosneft;
+
+    @FXML
+    private Text numberSber;
+
+    @FXML
     private Button buttonExit;
     @FXML
     private Text textAeroflotBuy;
@@ -89,7 +103,12 @@ public class ProfileController {
     }
 
     @FXML
-    void initialize() throws SQLException {
+    void initialize() throws SQLException, IOException, ClassNotFoundException {
+        numberAeroflot.setText((client.getNumberOfCompany("AEROFLOT", InvestmentsApplication.database.currentUser.getId()))+" шт.");
+        numberGold.setText((client.getNumberOfCompany("GOLD", InvestmentsApplication.database.currentUser.getId()))+" шт.");
+        numberRosneft.setText((client.getNumberOfCompany("ROSNEFT", InvestmentsApplication.database.currentUser.getId()))+" шт.");
+        numberSber.setText((client.getNumberOfCompany("SBER", InvestmentsApplication.database.currentUser.getId()))+" шт.");
+        textBalance.setText(String.valueOf(client.getSumRubles(InvestmentsApplication.database.currentUser.name))+"₽");
         textAeroflotSell.setText(String.valueOf(client.searchPrice("SELL_BID", "AEROFLOT")));
         textAeroflotBuy.setText(String.valueOf(client.searchPrice("BUY_BID", "AEROFLOT")));
         textRosneftSell.setText(String.valueOf(client.searchPrice("SELL_BID", "ROSNEFT")));

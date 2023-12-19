@@ -103,4 +103,15 @@ public class Client {
             throw new RuntimeException(e);
         }
     }
+    public int getNumberOfCompany(String name, int id_user) throws IOException, ClassNotFoundException {
+        try{
+            output.writeObject("GETNUMBEROFCOMPANY " + name +" "+ id_user);
+            int sum = (int) input.readObject();
+            return sum;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

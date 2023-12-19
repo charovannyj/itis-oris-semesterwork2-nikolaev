@@ -96,12 +96,36 @@ public class Server {
                         String name = request.substring(13);
                         float sum = getSumRubles(name);
                         output.writeObject(sum);
+                    } else if (request.startsWith("GETNUMBEROFCOMPANY")) {
+                        String[] args = request.split(" ");
+                        String company = args[1];
+                        int id = Integer.parseInt(args[2]);
+                        int ans = getNumberCurrentCompany(company,getName(id));
+                        output.writeObject(ans);
                     }
                 }
             } catch (IOException | ClassNotFoundException | SQLException e) {
                 e.printStackTrace();
             }
         }
+
+        /*public int getNumberOfCompany(String company, int id_user) throws IOException, ClassNotFoundException, SQLException {
+            try {
+                int k = 0;
+                Statement statement = DatabaseConnectionUtil.getConnection().createStatement();
+                String sql = "SELECT * FROM public.users WHERE users.company='" + "sum" + company.toLowerCase() + "' AND id='"+id_user+"';";
+                ResultSet resultSet = statement.executeQuery(sql);
+                if (resultSet != null) {
+                    while (resultSet.next()) {
+                        k = resultSet.getInt("sum" + company.toLowerCase());
+                    }
+                }
+                return k;
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }*/
+
         public static int getId(String name) throws SQLException {
             int id = 0;
             Statement statement = DatabaseConnectionUtil.getConnection().createStatement();
@@ -114,6 +138,7 @@ public class Server {
             }
             return id;
         }
+
         public int getSumRubles(String name) throws SQLException {
             int sumRubles = 0;
             Statement statement = DatabaseConnectionUtil.getConnection().createStatement();

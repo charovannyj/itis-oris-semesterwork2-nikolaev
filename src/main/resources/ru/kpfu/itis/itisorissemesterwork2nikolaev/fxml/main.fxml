@@ -8,12 +8,12 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="438.0" prefWidth="615.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.kpfu.itis.itisorissemesterwork2nikolaev.InvestmentsController">
    <children>
-      <ImageView fitHeight="159.0" fitWidth="342.0" layoutX="324.0" layoutY="279.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="324.0" AnchorPane.topAnchor="279.0">
+      <ImageView fitHeight="244.0" fitWidth="445.0" layoutX="170.0" layoutY="194.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.2509918212890625" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="194.0">
          <image>
             <Image url="@../drawings/mainImage.png" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="16.0" layoutY="95.0" prefHeight="264.0" prefWidth="290.0" AnchorPane.bottomAnchor="79.39999999999998" AnchorPane.rightAnchor="308.6" AnchorPane.topAnchor="95.0">
+      <AnchorPane layoutX="142.0" layoutY="27.0" prefHeight="175.0" prefWidth="290.0" AnchorPane.bottomAnchor="236.2" AnchorPane.rightAnchor="182.60000000000002" AnchorPane.topAnchor="27.0">
          <children>
             <TextField fx:id="textFieldForName" layoutX="26.0" layoutY="41.0" onAction="#onClickStartField" prefHeight="32.0" prefWidth="149.0" promptText="введи свой ник" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="41.0" />
             <Button fx:id="button" layoutX="76.0" layoutY="136.0" mnemonicParsing="false" onAction="#onClickEnter" text="Войти" AnchorPane.bottomAnchor="39.0" AnchorPane.leftAnchor="76.0" AnchorPane.rightAnchor="75.0" />
