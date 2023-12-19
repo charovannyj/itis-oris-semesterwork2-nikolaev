@@ -49,6 +49,8 @@ public class Database {
                     }
                 }
             }
+
+
             Collections.sort(prices, Comparator.comparingInt(arr -> arr[1]));
             int sum = 0;
             int count = InvestmentsApplication.database.currentQuantity;
@@ -62,29 +64,38 @@ public class Database {
                     break;
                 }
             }
-            int size = prices.size();
             //рассмотрим 4 случая хватает ли денег и заявок или нет
             //1 случай - хватает и того и того
             //2 - деньги есть, заявок недостаточно
             //3 - денег нет
-            if(InvestmentsApplication.database.currentUser.getSumRubles()>=sum && InvestmentsApplication.database.currentQuantity<=size){
-                for (int r = 0; r < count; r++){
-                    changeMoneyOnPaper(prices.get(r)[0], prices.get(r)[1], "SELL_BID");
-                }
-            } else if (InvestmentsApplication.database.currentUser.getSumRubles()>=sum && InvestmentsApplication.database.currentQuantity>size){
-                // покупаем все возможные заявки и говорим пользователю что купили все возможные и часть денег обратно и оповещаем
-                for (int k = 0; k < size; k++){
-                    changeMoneyOnPaper(prices.get(k)[0], prices.get(k)[1], "SELL_BID");
-                }
+            int size = prices.size();
+            if (size==0){
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("ПРЕДУПРЕЖДЕНИЕ :|");
-                alert.setHeaderText("куплены не все акции, но часть куплена");
+                alert.setHeaderText("Таких акции сейчас недоступны для покупки");
                 alert.showAndWait();
-            } else if(InvestmentsApplication.database.currentUser.getSumRubles()<sum){
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("ОШИБКА :(");
-                alert.setHeaderText("не хватает денег для совершения данной операции");
-                alert.showAndWait();
+            }
+            else {
+                if(InvestmentsApplication.database.currentUser.getSumRubles()>=sum && InvestmentsApplication.database.currentQuantity<=size){
+                    for (int r = 0; r < count; r++){
+                        changeMoneyOnPaper(prices.get(r)[0], prices.get(r)[1], "SELL_BID");
+                    }
+                } else if (InvestmentsApplication.database.currentUser.getSumRubles()>=sum && InvestmentsApplication.database.currentQuantity>size){
+                    // покупаем все возможные заявки и говорим пользователю что купили все возможные и часть денег обратно и оповещаем
+                    for (int k = 0; k < size; k++){
+                        changeMoneyOnPaper(prices.get(k)[0], prices.get(k)[1], "SELL_BID");
+                    }
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("ПРЕДУПРЕЖДЕНИЕ :|");
+                    alert.setHeaderText("куплены не все акции, но часть куплена");
+                    alert.showAndWait();
+                } else if(InvestmentsApplication.database.currentUser.getSumRubles()<sum){
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("ОШИБКА :(");
+                    alert.setHeaderText("не хватает денег для совершения данной операции");
+                    alert.showAndWait();
+
+                }
 
             }
 
@@ -117,22 +128,8 @@ public class Database {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        //пополняем баланс и убираем акции у продавца(мы покупатели) в users
-        String sql2 = null;
-        switch (InvestmentsApplication.database.currentCompany){
-            case "SBER":
-                sql2 = "UPDATE users SET sumrubles=sumrubles+?, sumsber=sumsber-1 WHERE id=?";
-                break;
-            case "ROSNEFT":
-                sql2 = "UPDATE users SET sumrubles=sumrubles+?, sumrosneft=sumrosneft-1 WHERE id=?";
-                break;
-            case "AEROFLOT":
-                sql2 = "UPDATE users SET sumrubles=sumrubles+?, sumaeroflot=sumaeroflot-1 WHERE id=?";
-                break;
-            case "GOLD":
-                sql2 = "UPDATE users SET sumrubles=sumrubles+?, sumgold=sumgold-1 WHERE id=?";
-                break;
-        }
+        //пополняем баланс у продавца(мы покупатели) в users
+        String sql2 = "UPDATE users SET sumrubles=sumrubles+? WHERE id=?";
         try {
             PreparedStatement preparedStatement = DatabaseConnectionUtil.getConnection().prepareStatement(sql2);
             preparedStatement.setFloat(1, price);
@@ -185,6 +182,13 @@ public class Database {
                     }
                 }
             }
+            int size = prices.size();
+            if (size==0){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("ПРЕДУПРЕЖДЕНИЕ :|");
+                alert.setHeaderText("Таких акции сейчас недоступны для покупки");
+                alert.showAndWait();
+            }
             Collections.sort(prices, Comparator.comparingInt(arr -> arr[1]));
             Collections.reverse(prices);
             int sum = 0;
@@ -199,7 +203,6 @@ public class Database {
                     break;
                 }
             }
-            int size = prices.size();
             //рассмотрим 4 случая хватает ли акций и заявок или нет
             //1 случай - хватает и того и того
             //2 - акции есть, заявок недостаточно
@@ -255,26 +258,24 @@ public class Database {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        //пополняем баланс и убираем акции у продавца(мы покупатели) в users
         String sql2 = null;
         switch (InvestmentsApplication.database.currentCompany){
             case "SBER":
-                sql2 = "UPDATE users SET sumrubles=sumrubles-?, sumsber=sumsber+1 WHERE id=?";
+                sql2 = "UPDATE users SET sumsber=sumsber+1 WHERE id=?";
                 break;
             case "ROSNEFT":
-                sql2 = "UPDATE users SET sumrubles=sumrubles-?, sumrosneft=sumrosneft+1 WHERE id=?";
+                sql2 = "UPDATE users SET sumrosneft=sumrosneft+1 WHERE id=?";
                 break;
             case "AEROFLOT":
-                sql2 = "UPDATE users SET sumrubles=sumrubles-?, sumaeroflot=sumaeroflot+1 WHERE id=?";
+                sql2 = "UPDATE users SET sumaeroflot=sumaeroflot+1 WHERE id=?";
                 break;
             case "GOLD":
-                sql2 = "UPDATE users SET sumrubles=sumrubles-?, sumgold=sumgold+1 WHERE id=?";
+                sql2 = "UPDATE users SET sumgold=sumgold+1 WHERE id=?";
                 break;
         }
         try {
             PreparedStatement preparedStatement = DatabaseConnectionUtil.getConnection().prepareStatement(sql2);
-            preparedStatement.setFloat(1, price);
-            preparedStatement.setInt(2, id_user);
+            preparedStatement.setInt(1, id_user);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

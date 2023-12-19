@@ -6,56 +6,73 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.kpfu.itis.itisorissemesterwork2nikolaev.ProfileController">
     <children>
         <HBox layoutX="148.0" prefHeight="138.0" prefWidth="579.0" />
-      <Button fx:id="buttonExit" layoutX="465.0" layoutY="348.0" mnemonicParsing="false" onAction="#onClickBack" text="Назад" />
-      <VBox layoutX="14.0" layoutY="15.0" prefHeight="370.0" prefWidth="197.0">
+      <Button fx:id="buttonExit" layoutX="537.0" layoutY="362.0" mnemonicParsing="false" onAction="#onClickBack" text="Назад" />
+      <VBox layoutX="14.0" layoutY="15.0" prefHeight="349.0" prefWidth="514.0">
          <children>
-                <AnchorPane onMouseClicked="#onClickSber" prefHeight="90.0" prefWidth="98.0">
+                <AnchorPane onMouseClicked="#onClickSber" prefHeight="90.0" prefWidth="546.0">
                     <children>
-                        <Text fx:id="textSber" layoutX="94.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Сбер" />
-                        <Text layoutX="94.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="255" />
-                        <ImageView fitHeight="65.0" fitWidth="81.0" layoutX="-4.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                        <Text fx:id="textSber" layoutX="94.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Сбер" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="20.0">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Text>
+                        <Text fx:id="textSberBuy" layoutX="100.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="255" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="105.0" />
+                        <ImageView fitHeight="65.0" fitWidth="81.0" layoutX="-4.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="20.0">
                             <image>
                                 <Image url="@../drawings/sber.png" />
                             </image>
                         </ImageView>
+                  <Text fx:id="textSberSell" layoutX="130.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="260" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="145.0" />
                     </children>
                 </AnchorPane>
-                <AnchorPane onMouseClicked="#onClickRosneft" prefHeight="98.0" prefWidth="210.0">
+                <AnchorPane onMouseClicked="#onClickRosneft" prefHeight="90.0" prefWidth="200.0">
                     <children>
-                        <Text layoutX="57.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Роснефть" />
-                        <Text layoutX="57.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                        <ImageView fitHeight="77.0" fitWidth="39.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                        <Text layoutX="57.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Роснефть" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="20.0">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Text>
+                        <Text fx:id="textRosneftBuy" layoutX="110.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="105.0" />
+                        <ImageView fitHeight="71.0" fitWidth="52.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="30.0">
                             <image>
                                 <Image url="@../drawings/rosneft.png" />
                             </image>
                   </ImageView>
+                  <Text fx:id="textRosneftSell" layoutX="156.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="145.0" />
                     </children>
                 </AnchorPane>
-                <AnchorPane onMouseClicked="#onClickAeroflot" prefHeight="80.0" prefWidth="175.0">
+                <AnchorPane onMouseClicked="#onClickAeroflot" prefHeight="90.0" prefWidth="200.0">
                     <children>
-                        <Text layoutX="139.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Аэрофлот" wrappingWidth="59.41284179687494" />
-                        <Text layoutX="128.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                        <ImageView fitHeight="36.0" fitWidth="105.0" layoutX="3.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+                        <Text layoutX="139.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Аэрофлот" wrappingWidth="185.81288909912104" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="20.0">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Text>
+                        <Text fx:id="textAeroflotBuy" layoutX="115.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="105.0" />
+                        <ImageView fitHeight="36.0" fitWidth="105.0" layoutX="3.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="21.0">
                      <image>
                         <Image url="@../drawings/aeroflot-russian-airlines-logo-e1504171933945.png" />
                      </image>
                   </ImageView>
+                  <Text fx:id="textAeroflotSell" layoutX="148.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="145.0" />
                     </children>
                 </AnchorPane>
-              <AnchorPane onMouseClicked="#onClickGold" prefHeight="67.0" prefWidth="189.0">
+              <AnchorPane onMouseClicked="#onClickGold" prefHeight="88.0" prefWidth="514.0">
                   <children>
-                      <Text layoutX="126.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Золото" />
-                      <Text layoutX="134.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                      <ImageView fitHeight="96.0" fitWidth="157.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                      <Text layoutX="126.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Золото" wrappingWidth="93.3577880859375" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="20.0">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Text>
+                      <Text fx:id="textGoldBuy" layoutX="110.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="105.0" />
+                      <ImageView fitHeight="65.0" fitWidth="93.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="10.0">
                      <image>
                         <Image url="@../drawings/gold-transformed.png" />
                      </image>
                   </ImageView>
+                  <Text fx:id="textGoldSell" layoutX="157.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="145.0" />
                   </children>
               </AnchorPane>
          </children>

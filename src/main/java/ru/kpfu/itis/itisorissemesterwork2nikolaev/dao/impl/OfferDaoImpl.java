@@ -25,8 +25,8 @@ public class OfferDaoImpl implements Dao<Offer> {
                 while (resultSet.next()) {
                     offers.add(
                             new Offer(
-                                    resultSet.getInt("id"),
-                                    resultSet.getString("name"),
+                                    resultSet.getInt("id_user"),
+                                    resultSet.getString("company"),
                                     resultSet.getString("action"),
                                     resultSet.getFloat("price"),
                                     resultSet.getInt("quantity")

@@ -20,10 +20,6 @@ public class InvestmentsApplication extends Application {
         FXMLLoader loader = new FXMLLoader(InvestmentsApplication.class.getResource("fxml/main.fxml"));
         anchorPane.getChildren().add(loader.load());
 
-        Button btn = new Button();
-        btn.setText("Click!");
-        anchorPane.getChildren().add(btn);
-
         Scene k = new Scene(anchorPane);
         stage.setTitle("INVESTMENTS");
         stage.setScene(k);
